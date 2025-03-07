@@ -4,6 +4,7 @@ import { geistSans } from "./fonts/fonts";
 import { siteConfig } from "./config/site";
 import { Header } from "./(app)/components/Header";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeProvider } from "next-themes";
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -24,10 +25,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.className} antialiased`}>
-        <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-          <Header />
-          {children}
-        </ClerkProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+            <Header />
+            {children}
+          </ClerkProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
