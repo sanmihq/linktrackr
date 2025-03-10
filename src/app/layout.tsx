@@ -1,10 +1,12 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { geistSans } from "./fonts/fonts";
+import { geistSans, poppins } from "./fonts/fonts";
 import { siteConfig } from "./config/site";
 import { Header } from "./(app)/components/Header";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "next-themes";
+import { ConvexClientProvider } from "./ConvexClientProvider";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -24,17 +26,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.className} antialiased`}>
+      <body
+        className={`${poppins.className} mx-auto max-w-[100rem] antialiased`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-            <Header />
-            {children}
-          </ClerkProvider>
+          <ConvexClientProvider>
+            <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+              <Header />
+              <main>{children}</main>
+              <Toaster richColors />
+            </ClerkProvider>
+          </ConvexClientProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "LinkTrackr",
   title: "LinkTrackr - Smart Link Logging",
-  url: "https://ui.shadcn.com",
+  url: "https://linktrackr.vercel.app",
   ogImage: "https://ui.shadcn.com/og.jpg",
   description:
     "Generate trackable links to log visitor data before redirecting to the original URL.",
@@ -9,6 +9,7 @@ export const siteConfig = {
     x: "https://x.com/sanmi_hq",
     github: "https://github.com/sanmihq/linktrackr",
   },
+  domain: "http://localhost:3000",
 };
 
 export type SiteConfig = typeof siteConfig;
